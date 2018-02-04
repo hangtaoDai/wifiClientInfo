@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wifi.dao.UsermacMapper" >
+  <resultMap id="BaseResultMap" type="com.wifi.bean.Usermac" >
+    <id column="usermac_id" property="usermacId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_mac" property="userMac" jdbcType="VARCHAR" />
+    <result column="mac_type" property="macType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    usermac_id, user_id, user_mac, mac_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usermac
+    where usermac_id = #{usermacId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usermac
+    where usermac_id = #{usermacId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wifi.bean.Usermac" >
+    insert into usermac (usermac_id, user_id, user_mac, 
+      mac_type)
+    values (#{usermacId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userMac,jdbcType=VARCHAR}, 
+      #{macType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wifi.bean.Usermac" >
+    insert into usermac
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usermacId != null" >
+        usermac_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userMac != null" >
+        user_mac,
+      </if>
+      <if test="macType != null" >
+        mac_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usermacId != null" >
+        #{usermacId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userMac != null" >
+        #{userMac,jdbcType=VARCHAR},
+      </if>
+      <if test="macType != null" >
+        #{macType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wifi.bean.Usermac" >
+    update usermac
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userMac != null" >
+        user_mac = #{userMac,jdbcType=VARCHAR},
+      </if>
+      <if test="macType != null" >
+        mac_type = #{macType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where usermac_id = #{usermacId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wifi.bean.Usermac" >
+    update usermac
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_mac = #{userMac,jdbcType=VARCHAR},
+      mac_type = #{macType,jdbcType=VARCHAR}
+    where usermac_id = #{usermacId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByuserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from usermac
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+</mapper>

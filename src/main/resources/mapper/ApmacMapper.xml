@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wifi.dao.ApmacMapper" >
+  <resultMap id="BaseResultMap" type="com.wifi.bean.Apmac" >
+    <id column="ap_id" property="apId" jdbcType="INTEGER" />
+    <result column="ap_mac" property="apMac" jdbcType="VARCHAR" />
+    <result column="ap_address" property="apAddress" jdbcType="VARCHAR" />
+    <result column="ap_longitude" property="apLongitude" jdbcType="DOUBLE" />
+    <result column="ap_latitude" property="apLatitude" jdbcType="DOUBLE" />
+    <result column="ap_indoor" property="apIndoor" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ap_id, ap_mac, ap_address, ap_longitude, ap_latitude, ap_indoor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apmac
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apmac
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wifi.bean.Apmac" >
+    insert into apmac (ap_id, ap_mac, ap_address, 
+      ap_longitude, ap_latitude, ap_indoor
+      )
+    values (#{apId,jdbcType=INTEGER}, #{apMac,jdbcType=VARCHAR}, #{apAddress,jdbcType=VARCHAR}, 
+      #{apLongitude,jdbcType=DOUBLE}, #{apLatitude,jdbcType=DOUBLE}, #{apIndoor,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wifi.bean.Apmac" >
+    insert into apmac
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apId != null" >
+        ap_id,
+      </if>
+      <if test="apMac != null" >
+        ap_mac,
+      </if>
+      <if test="apAddress != null" >
+        ap_address,
+      </if>
+      <if test="apLongitude != null" >
+        ap_longitude,
+      </if>
+      <if test="apLatitude != null" >
+        ap_latitude,
+      </if>
+      <if test="apIndoor != null" >
+        ap_indoor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apId != null" >
+        #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="apMac != null" >
+        #{apMac,jdbcType=VARCHAR},
+      </if>
+      <if test="apAddress != null" >
+        #{apAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="apLongitude != null" >
+        #{apLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="apLatitude != null" >
+        #{apLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="apIndoor != null" >
+        #{apIndoor,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wifi.bean.Apmac" >
+    update apmac
+    <set >
+      <if test="apMac != null" >
+        ap_mac = #{apMac,jdbcType=VARCHAR},
+      </if>
+      <if test="apAddress != null" >
+        ap_address = #{apAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="apLongitude != null" >
+        ap_longitude = #{apLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="apLatitude != null" >
+        ap_latitude = #{apLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="apIndoor != null" >
+        ap_indoor = #{apIndoor,jdbcType=BIT},
+      </if>
+    </set>
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wifi.bean.Apmac" >
+    update apmac
+    set ap_mac = #{apMac,jdbcType=VARCHAR},
+      ap_address = #{apAddress,jdbcType=VARCHAR},
+      ap_longitude = #{apLongitude,jdbcType=DOUBLE},
+      ap_latitude = #{apLatitude,jdbcType=DOUBLE},
+      ap_indoor = #{apIndoor,jdbcType=BIT}
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </update>
+</mapper>
