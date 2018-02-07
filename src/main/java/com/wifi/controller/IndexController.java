@@ -30,12 +30,6 @@ public class IndexController {
 
     }
 
-    @RequestMapping(value="/meetings")
-    public String meetings(){
-        return "meetings";
-
-    }
-
     @RequestMapping(value="/login")
     public String login(){
         return "login";
