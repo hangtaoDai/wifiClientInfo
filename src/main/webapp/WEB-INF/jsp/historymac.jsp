@@ -13,7 +13,7 @@
     Visual Admin Template
     #/preview/templatemo_455_visual_admin
     -->
-    <link href='http://fonts.useso.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-style.css" rel="stylesheet">
@@ -131,136 +131,8 @@
     <!-- JS -->
     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>      <!-- jQuery -->
     <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
-    <script>
 
-      var gaugeChart;
-      var gaugeData;
-      var gaugeOptions;
-      var timelineChart;
-      var timelineDataTable;
-      var timelineOptions;
-      var areaData;
-      var areaOptions;
-      var areaChart;
 
-      /* Gauage 
-      --------------------------------------------------*/
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawGauge);
-      google.load("visualization", "1", {packages:["timeline"]});
-      google.setOnLoadCallback(drawTimeline);
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-
-      $(document).ready(function(){
-        if($.browser.mozilla) {
-          //refresh page on browser resize
-          // http://www.sitepoint.com/jquery-refresh-page-browser-resize/
-          $(window).bind('resize', function(e)
-          {
-            if (window.RT) clearTimeout(window.RT);
-            window.RT = setTimeout(function()
-            {
-              this.location.reload(false); /* false to get page from cache */
-            }, 200);
-          });      
-        } else {
-          $(window).resize(function(){
-            drawCharts();
-          });  
-        }   
-      });
-
-      function drawGauge() {
-
-        gaugeData = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['Memory', 80],
-          ['CPU', 55],
-          ['Network', 68]
-        ]);
-
-        gaugeOptions = {
-          redFrom: 90, redTo: 100,
-          yellowFrom:75, yellowTo: 90,
-          minorTicks: 5
-        };
-
-        gaugeChart = new google.visualization.Gauge(document.getElementById('gauge_div'));
-        gaugeChart.draw(gaugeData, gaugeOptions);
-
-        setInterval(function() {
-          gaugeData.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-          gaugeChart.draw(gaugeData, gaugeOptions);
-        }, 13000);
-        setInterval(function() {
-          gaugeData.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-          gaugeChart.draw(gaugeData, gaugeOptions);
-        }, 5000);
-        setInterval(function() {
-          gaugeData.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-          gaugeChart.draw(gaugeData, gaugeOptions);
-        }, 26000);        
-      } // End function drawGauage
-
-      /* Timeline
-      --------------------------------------------------*/
-      function drawTimeline() {
-        var container = document.getElementById('timeline_div');
-        timelineChart = new google.visualization.Timeline(container);
-        timelineDataTable = new google.visualization.DataTable();
-        timelineDataTable.addColumn({ type: 'string', id: 'Room' });
-        timelineDataTable.addColumn({ type: 'string', id: 'Name' });
-        timelineDataTable.addColumn({ type: 'date', id: 'Start' });
-        timelineDataTable.addColumn({ type: 'date', id: 'End' });
-        timelineDataTable.addRows([
-          [ 'Magnolia Room',  'CSS Fundamentals',    new Date(0,0,0,12,0,0),  new Date(0,0,0,14,0,0) ],
-          [ 'Magnolia Room',  'Intro JavaScript',    new Date(0,0,0,14,30,0), new Date(0,0,0,16,0,0) ],
-          [ 'Magnolia Room',  'Advanced JavaScript', new Date(0,0,0,16,30,0), new Date(0,0,0,19,0,0) ],
-          [ 'Gladiolus Room', 'Intermediate Perl',   new Date(0,0,0,12,30,0), new Date(0,0,0,14,0,0) ],
-          [ 'Gladiolus Room', 'Advanced Perl',       new Date(0,0,0,14,30,0), new Date(0,0,0,16,0,0) ],
-          [ 'Gladiolus Room', 'Applied Perl',        new Date(0,0,0,16,30,0), new Date(0,0,0,18,0,0) ],
-          [ 'Petunia Room',   'Google Charts',       new Date(0,0,0,12,30,0), new Date(0,0,0,14,0,0) ],
-          [ 'Petunia Room',   'Closure',             new Date(0,0,0,14,30,0), new Date(0,0,0,16,0,0) ],
-          [ 'Petunia Room',   'App Engine',          new Date(0,0,0,16,30,0), new Date(0,0,0,18,30,0) ]]);
-
-        timelineOptions = {
-          timeline: { colorByRowLabel: true },
-          backgroundColor: '#ffd'
-        };
-
-        timelineChart.draw(timelineDataTable, timelineOptions);
-      } // End function drawTimeline
-
-      /* Area Chart 
-      --------------------------------------------------*/
-      function drawChart() {
-        areaData = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      540]
-        ]);
-
-        areaOptions = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-
-        areaChart = new google.visualization.AreaChart(document.getElementById('area_chart_div'));
-        areaChart.draw(areaData, areaOptions);
-      } // End function drawChart
-
-      function drawCharts () {
-          gaugeChart.draw(gaugeData, gaugeOptions);
-          timelineChart.draw(timelineDataTable, timelineOptions);
-          areaChart.draw(areaData, areaOptions);
-      }
-
-    </script>
     <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
   </body>
 </html>

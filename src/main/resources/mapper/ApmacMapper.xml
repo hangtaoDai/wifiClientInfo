@@ -103,4 +103,6 @@
       ap_indoor = #{apIndoor,jdbcType=BIT}
     where ap_id = #{apId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

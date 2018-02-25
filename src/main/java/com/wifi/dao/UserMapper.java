@@ -2,6 +2,7 @@ package com.wifi.dao;
 
 import com.wifi.bean.User;
 
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 

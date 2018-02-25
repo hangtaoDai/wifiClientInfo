@@ -41,4 +41,13 @@
     <mvc:resources mapping="/fonts/*" location="/static/fonts/"/>
     <mvc:resources mapping="/jqvmap/*" location="/static/jqvmap/"/>
 
+    <mvc:resources mapping="/hp-layui/css/*" location="/hp-layui/css/"/>
+    <mvc:resources mapping="/hp-layui/hpModules/*" location="/hp-layui/hpModules/"/>
+    <mvc:resources mapping="/hp-layui/img/*" location="/hp-layui/img/"/>
+    <mvc:resources mapping="/hp-layui/lib/*" location="/hp-layui/lib/"/>
+    <mvc:resources mapping="/hp-layui/demo/*" location="/hp-layui/demo/"/>
+    <mvc:resources mapping="/hp-layui/hpDemo/*" location="/hp-layui/hpDemo/"/>
+    <mvc:resources mapping="/hp-layui/pageDemo/*" location="/hp-layui/pageDemo/"/>
+
+    <mvc:resources mapping="json/table/*" location="/data/json/table/"/>
 </beans>

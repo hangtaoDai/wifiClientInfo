@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>异步加载地图</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+</head>
+<body>
+<div id="container"></div>
+
+<script src="http://webapi.amap.com/maps?v=1.4.4&key=a3548294e42429a8dbc4910169cbc047&callback=init"></script>
+<script src="/static/js/hotAP.js"></script>
+<div class="button-group">
+    <input id="setCenter" type="button" class="button" value="改变地图中心点及缩放级别"/>
+</div>
+<script>
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [116.397428, 39.90923],
+        zoom: 16,
+        zooms:[16,18]
+    });
+    AMap.event.addDomListener(document.getElementById('setCenter'), 'click', function() {
+        // 设置缩放级别和中心点
+        map.setZoomAndCenter(16, [108.9848256111,  34.2462376564]);
+
+        // 在新中心点添加 marker
+        var marker = new AMap.Marker({
+            map: map,
+            position: [108.9848256111, 34.2462376564]
+        });
+    });
+
+    var markers = []; //province见Demo引用的JS文件
+    for (var i = 0; i < hotAP.length; i += 1) {
+        var marker;
+
+        var icon = new AMap.Icon({
+            image: '/static/images/AP.png',
+            size: new AMap.Size(24, 24)
+        });
+        var pos= hotAP[i].apmac.apLongitude+","+hotAP[i].apmac.apLatitude;
+        // alert(pos);
+        marker = new AMap.Marker({
+            icon: icon,
+            position: pos.split(","),
+            offset: new AMap.Pixel(-12,-12),
+            zIndex: 101,
+            title: hotAP[i].times,
+            map: map
+        });
+
+        markers.push(marker);
+    }
+    map.setFitView();
+</script>
+</body>
+</body>
+</html>

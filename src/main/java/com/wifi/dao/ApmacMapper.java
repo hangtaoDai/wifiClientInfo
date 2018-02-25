@@ -1,7 +1,9 @@
 package com.wifi.dao;
 
 import com.wifi.bean.Apmac;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface ApmacMapper {
     int deleteByPrimaryKey(Integer apId);
 
