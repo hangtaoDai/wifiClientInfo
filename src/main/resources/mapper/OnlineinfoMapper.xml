@@ -114,8 +114,13 @@
       end_time = #{endTime,jdbcType=VARCHAR}
     where onlineInfo_id = #{onlineinfoId,jdbcType=INTEGER}
   </update>
-  <select id="selectByuser_id">
 
+  <select id="getHotAPByday" resultType="java.util.HashMap" parameterType="java.lang.String">
+    select onlineinfo.ap_id, ap_address,ap_mac,ap_longitude,ap_latitude,ap_indoor, count(*) times
+    from onlineInfo INNER JOIN apmac
+    where date = #{date,jdbcType=VARCHAR} AND apmac.ap_id=onlineinfo.ap_id
+    GROUP BY ap_id ORDER BY times DESC;
 
   </select>
+
 </mapper>

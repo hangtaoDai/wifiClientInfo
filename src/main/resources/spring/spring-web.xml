@@ -34,7 +34,6 @@
     <!--4:扫描web相关的bean-->
     <context:component-scan base-package="com.wifi.controller"/>
 
-    <mvc:resources mapping="/html/*" location="/static/html/"/>
     <mvc:resources mapping="/js/*" location="/static/js/"/>
     <mvc:resources mapping="/css/*" location="/static/css/"/>
     <mvc:resources mapping="/images/*" location="/static/images/"/>

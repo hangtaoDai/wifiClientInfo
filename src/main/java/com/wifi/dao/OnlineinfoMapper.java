@@ -2,6 +2,9 @@ package com.wifi.dao;
 
 import com.wifi.bean.Onlineinfo;
 
+import java.util.HashMap;
+import java.util.List;
+
 public interface OnlineinfoMapper {
     int deleteByPrimaryKey(Integer onlineinfoId);
 
@@ -14,4 +17,8 @@ public interface OnlineinfoMapper {
     int updateByPrimaryKeySelective(Onlineinfo record);
 
     int updateByPrimaryKey(Onlineinfo record);
+
+    List<HashMap> getHotAPByday(String date);
+
+
 }

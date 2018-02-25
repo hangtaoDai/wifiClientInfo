@@ -4,6 +4,7 @@ import com.wifi.bean.Usermac;
 
 import java.util.List;
 
+
 public interface UsermacMapper {
     int deleteByPrimaryKey(Integer usermacId);
 
@@ -16,6 +17,8 @@ public interface UsermacMapper {
     int updateByPrimaryKeySelective(Usermac record);
 
     int updateByPrimaryKey(Usermac record);
+
+    // new add
 
     List<Usermac> selectByuserId(Integer user_id);
 }
