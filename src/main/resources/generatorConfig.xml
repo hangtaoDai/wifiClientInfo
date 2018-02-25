@@ -52,7 +52,7 @@
             enableCountByExample、enableSelectByExample、enableDeleteByExample、enableUpdateByExample、selectByExampleQueryId：
             去除自动生成的Example类
         -->
-        <table schema="" tableName="user" enableCountByExample="false" enableSelectByExample="false"
+<!--        <table schema="" tableName="user" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
         <table schema="" tableName="userMac" enableCountByExample="false" enableSelectByExample="false"
@@ -63,7 +63,13 @@
         </table>
         <table schema="" tableName="onlineInfo" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
+        </table>-->
+
+        <table schema="" tableName="meeting" enableCountByExample="false" enableSelectByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>
+
+
 
     </context>
 </generatorConfiguration>

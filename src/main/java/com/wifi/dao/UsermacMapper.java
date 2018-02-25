@@ -4,6 +4,11 @@ import com.wifi.bean.Usermac;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> huangliyuan
 public interface UsermacMapper {
     int deleteByPrimaryKey(Integer usermacId);
 
@@ -16,6 +21,8 @@ public interface UsermacMapper {
     int updateByPrimaryKeySelective(Usermac record);
 
     int updateByPrimaryKey(Usermac record);
+
+    // new add
 
     List<Usermac> selectByuserId(Integer user_id);
 }

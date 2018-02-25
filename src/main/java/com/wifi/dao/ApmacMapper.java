@@ -16,4 +16,6 @@ public interface ApmacMapper {
     int updateByPrimaryKeySelective(Apmac record);
 
     int updateByPrimaryKey(Apmac record);
+
+
 }

@@ -17,7 +17,7 @@
 
         <!-- 基本属性 url、user、password -->
         <property name="jdbcUrl" value="${url}" />
-        <property name="user" value="${user}" />
+        <property name="user" value="${username}" />
         <property name="password" value="${password}" />
 
         <!--c3p0私有属性-->
