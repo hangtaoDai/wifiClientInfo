@@ -36,5 +36,22 @@ public class IndexController {
 
     }
 
+    @RequestMapping(value="/main")
+    public String main(){
+        return "main";
+
+    }
+
+    @RequestMapping(value="/mac")
+    public String getMac(){
+        return "mac";
+
+    }
+    @RequestMapping(value="/relationships")
+    public String getRelationships(){
+        return "relationship";
+
+    }
+
 
 }

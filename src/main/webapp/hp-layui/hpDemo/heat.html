@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AP热力图</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+</head>
+<body>
+<div id="container" class="container"></div>
+<script src="http://webapi.amap.com/loca?key=a3548294e42429a8dbc4910169cbc047"></script>
+<script src="/static/js/hotAP.js"></script>
+<script>
+
+    var map = Loca.create('container', {
+        features: ['bg', 'road'],
+        center: [108.9848256111, 34.2462376564],
+        zoom: 16,
+        zooms:[16,18]
+    });
+
+    var layer = Loca.visualLayer({
+        container: map,
+        type: 'heatmap',
+        shape: 'normal'
+    });
+
+    var list = [];
+    var i = -1, length = hotAP.length;
+    while (++i < length) {
+        var item = hotAP[i];
+        list.push({
+            coordinate: [item.apmac.apLongitude, item.apmac.apLatitude],
+            count: item.times
+        })
+    }
+
+    layer.setData(list, {
+        lnglat: 'coordinate',
+        value: 'count'
+    });
+
+    layer.setOptions({
+        style: {
+            radius: 25,
+            opacity: [0, 0.7],
+        },
+        gradient: {
+            0.5: 'blue',
+            0.65: 'rgb(117,211,248)',
+            0.7: 'rgb(0, 255, 0)',
+            0.9: '#ffea00',
+            1.0: 'red'
+        }
+    });
+
+    layer.render();
+
+</script>
+</body>
+</html>
