@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wifi.dao.MeetingMapper" >
+  <resultMap id="BaseResultMap" type="com.wifi.bean.Meeting" >
+    <id column="meeting_id" property="meetingId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="usermac_id" property="usermacId" jdbcType="INTEGER" />
+    <result column="partner_id" property="partnerId" jdbcType="INTEGER" />
+    <result column="partnermac_id" property="partnermacId" jdbcType="INTEGER" />
+    <result column="ap_id" property="apId" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    meeting_id, user_id, usermac_id, partner_id, partnermac_id, ap_id, time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from meeting
+    where meeting_id = #{meetingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from meeting
+    where meeting_id = #{meetingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wifi.bean.Meeting" >
+    insert into meeting (meeting_id, user_id, usermac_id, 
+      partner_id, partnermac_id, ap_id, 
+      time)
+    values (#{meetingId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{usermacId,jdbcType=INTEGER}, 
+      #{partnerId,jdbcType=INTEGER}, #{partnermacId,jdbcType=INTEGER}, #{apId,jdbcType=INTEGER}, 
+      #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wifi.bean.Meeting" >
+    insert into meeting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meetingId != null" >
+        meeting_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="usermacId != null" >
+        usermac_id,
+      </if>
+      <if test="partnerId != null" >
+        partner_id,
+      </if>
+      <if test="partnermacId != null" >
+        partnermac_id,
+      </if>
+      <if test="apId != null" >
+        ap_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meetingId != null" >
+        #{meetingId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="usermacId != null" >
+        #{usermacId,jdbcType=INTEGER},
+      </if>
+      <if test="partnerId != null" >
+        #{partnerId,jdbcType=INTEGER},
+      </if>
+      <if test="partnermacId != null" >
+        #{partnermacId,jdbcType=INTEGER},
+      </if>
+      <if test="apId != null" >
+        #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wifi.bean.Meeting" >
+    update meeting
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="usermacId != null" >
+        usermac_id = #{usermacId,jdbcType=INTEGER},
+      </if>
+      <if test="partnerId != null" >
+        partner_id = #{partnerId,jdbcType=INTEGER},
+      </if>
+      <if test="partnermacId != null" >
+        partnermac_id = #{partnermacId,jdbcType=INTEGER},
+      </if>
+      <if test="apId != null" >
+        ap_id = #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where meeting_id = #{meetingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wifi.bean.Meeting" >
+    update meeting
+    set user_id = #{userId,jdbcType=INTEGER},
+      usermac_id = #{usermacId,jdbcType=INTEGER},
+      partner_id = #{partnerId,jdbcType=INTEGER},
+      partnermac_id = #{partnermacId,jdbcType=INTEGER},
+      ap_id = #{apId,jdbcType=INTEGER},
+      time = #{time,jdbcType=VARCHAR}
+    where meeting_id = #{meetingId,jdbcType=INTEGER}
+  </update>
+</mapper>
