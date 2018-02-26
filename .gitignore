@@ -19,4 +19,4 @@ Thumbs.db
 
 
 
-*.properties
+src/main/resources/jdbc.properties
