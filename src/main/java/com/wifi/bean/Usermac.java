@@ -25,6 +25,16 @@ public class Usermac {
         this.userId = userId;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "usermacId=" + usermacId +
+                ", userId=" + userId +
+                ", userMac='" + userMac + '\'' +
+                ", macType='" + macType + '\'' +
+                '}';
+    }
+
     public String getUserMac() {
         return userMac;
     }

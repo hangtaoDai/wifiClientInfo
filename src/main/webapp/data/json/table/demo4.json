@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 4,
+  "data": [
+    {
+      "usermacId": 11846,
+      "userId": 2923,
+      "userMac": "80ad16e5a4b3"
+    },
+    {
+      "usermacId": 37535,
+      "userId": 2923,
+      "userMac": "483c0cd5ea34"
+    },
+    {
+      "usermacId": 37582,
+      "userId": 2923,
+      "userMac": "64b0a6354bc7"
+    },
+    {
+      "usermacId": 38152,
+      "userId": 2923,
+      "userMac": "ec5a860c166a"
+    }
+  ]
+}

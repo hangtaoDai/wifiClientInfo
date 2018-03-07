@@ -1,4 +1,3 @@
-import com.wifi.bean.Usermac;
 import com.wifi.service.OnlineInfoService;
 import com.wifi.service.UsermacService;
 import org.junit.Test;
@@ -7,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import java.util.List;
 
 
 /**
@@ -36,7 +33,25 @@ public class OnlineInfoTest {
 
     @Test
     public void test2(){
-        List<Usermac> usermacs = usermacService.selectUsermacByUsername("xjtu");
-        System.out.println(usermacs.size());
+        String str = usermacService.selectUsermacByUsername("xjtu");
+
+        System.out.println(str);
+    }
+
+    @Test
+    public void testOnlineTrackByUName(){
+        String date = "2016-10-27";
+        String uname = "xxzxtemp5";
+        String str = onlineInfoService.getTrackByUName(date,uname);
+        System.out.println(str);
+    }
+
+    @Test
+    public void testOnlineTrackByUMac(){
+        String date = "2016-10-27";
+        String umac = "8cebc69fb6d4";
+        String str = onlineInfoService.getTrackByUMac(date,umac);
+        System.out.println(str);
+
     }
 }

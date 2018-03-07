@@ -1,14 +1,12 @@
 package com.wifi.controller;
 
-import com.wifi.bean.Usermac;
 import com.wifi.service.UsermacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Created by liyuan on 2018/1/30.
@@ -20,7 +18,7 @@ public class UserMacController {
     @Autowired
     UsermacService usermacService;
 
-    @RequestMapping("/historymac")
+/*    @RequestMapping("/historymac")
     public ModelAndView getMacByUserName(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
         String username = request.getParameter("username");
@@ -30,6 +28,18 @@ public class UserMacController {
         modelAndView.addObject("username",username);
         modelAndView.setViewName("/historymac");
         return modelAndView;
+
+    }*/
+
+    @RequestMapping("/macs")
+    @ResponseBody
+    public String getMacByUserNameInfo(HttpServletRequest request){
+
+        String username = request.getParameter("username");
+
+        String str = usermacService.selectUsermacByUsername(username);
+
+        return str;
 
     }
 }

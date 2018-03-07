@@ -114,4 +114,9 @@
       time = #{time,jdbcType=VARCHAR}
     where meeting_id = #{meetingId,jdbcType=INTEGER}
   </update>
+  <select id="selectByUName" resultType="java.util.HashMap">
+    SELECT m.meeting_id,m.user_id,u.username uname,m.usermac_id,um.user_mac umac,um.mac_type umac_type,m.partner_id,p.username pname,m.partnermac_id,pm.user_mac pmac,pm.mac_type pmac_type,m.ap_id,ap_mac,ap_address,ap_longitude,ap_latitude,ap_indoor,start_time,last_time
+    FROM meeting m INNER JOIN userMac um,userMac pm, `user` u,`user` p,apMac ap
+    where m.start_time like CONCAT(#{0,jdbcType=VARCHAR},'%') and u.username=#{1,jdbcType=VARCHAR} and m.user_id = u.user_id and m.partner_id = p.user_id and m.usermac_id = um.usermac_id and m.partnermac_id=pm.usermac_id and m.ap_id=ap.ap_id;
+  </select>
 </mapper>

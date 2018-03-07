@@ -1,8 +1,9 @@
 package com.wifi.serviceIml;
 
 import com.google.gson.Gson;
-import com.wifi.bean.APmacVO;
 import com.wifi.bean.Apmac;
+import com.wifi.bean.VO.APmacVO;
+import com.wifi.bean.VO.Track;
 import com.wifi.dao.OnlineinfoMapper;
 import com.wifi.service.OnlineInfoService;
 import com.wifi.utils.CoodinateCovertor;
@@ -62,12 +63,60 @@ public class OnlineInfoServiceImpl implements OnlineInfoService {
 
         }
 
-//        JSONArray json = JSONArray.fromObject(aPmacVOs);
-//        String str = json.toString();
 
         String str = new Gson().toJson(aPmacVOs);
         System.out.println(str);
         System.out.println(aPmacVOs.size());
+        return str;
+    }
+
+    public String getTrackByUName(String date, String username) {
+        List<HashMap> onlineTrackByUNameList = onlineinfoMapper.getTrackByusername(date, username);
+        ArrayList<Track> tracks = new ArrayList<Track>();
+        Track track = new Track();
+        String start_point = (String) onlineTrackByUNameList.get(0).get("ap_address");
+        System.out.println(start_point);
+        int num = onlineTrackByUNameList.size();
+        String end_point = (String) onlineTrackByUNameList.get(num-1).get("ap_address");
+        System.out.println(end_point);
+        track.setName(start_point+" -> "+end_point);
+        Double[][] path = new Double[num][2];
+        for (int i = 0; i < num; i++) {
+            Double ap_longitude = (Double)onlineTrackByUNameList.get(i).get("ap_longitude");
+            Double ap_latitude = (Double) onlineTrackByUNameList.get(i).get("ap_latitude");
+            LngLat lngLat = new LngLat(ap_longitude,ap_latitude);
+            LngLat lngLatNew = CoodinateCovertor.bd_decrypt(lngLat);
+            path[i][0] = lngLatNew.getLongitude();
+            path[i][1] = lngLatNew.getLantitude();
+        }
+        track.setPath(path);
+        tracks.add(track);
+        String str = new Gson().toJson(tracks);
+        return str;
+    }
+
+    public String getTrackByUMac(String date, String usermac) {
+        List<HashMap> onlineTrackByUMacList = onlineinfoMapper.getTrackByusermac(date, usermac);
+        ArrayList<Track> tracks = new ArrayList<Track>();
+        Track track = new Track();
+        String start_point = (String) onlineTrackByUMacList.get(0).get("ap_address");
+        System.out.println(start_point);
+        int num = onlineTrackByUMacList.size();
+        String end_point = (String) onlineTrackByUMacList.get(num-1).get("ap_address");
+        System.out.println(end_point);
+        track.setName(start_point+" -> "+end_point);
+        Double[][] path = new Double[num][2];
+        for (int i = 0; i < num; i++) {
+            Double ap_longitude = (Double)onlineTrackByUMacList.get(i).get("ap_longitude");
+            Double ap_latitude = (Double) onlineTrackByUMacList.get(i).get("ap_latitude");
+            LngLat lngLat = new LngLat(ap_longitude,ap_latitude);
+            LngLat lngLatNew = CoodinateCovertor.bd_decrypt(lngLat);
+            path[i][0] = lngLatNew.getLongitude();
+            path[i][1] = lngLatNew.getLantitude();
+        }
+        track.setPath(path);
+        tracks.add(track);
+        String str = new Gson().toJson(tracks);
         return str;
     }
 }

@@ -18,7 +18,13 @@ public interface OnlineinfoMapper {
 
     int updateByPrimaryKey(Onlineinfo record);
 
+    //new add
     List<HashMap> getHotAPByday(String date);
+
+    List<HashMap> getTrackByusername(String date, String username);
+
+    List<HashMap> getTrackByusermac(String date, String mac);
+
 
 
 }

@@ -1,4 +1,6 @@
-package com.wifi.bean;
+package com.wifi.bean.VO;
+
+import com.wifi.bean.Apmac;
 
 /**
  * Created by Daihangtao on 2018/2/21.
@@ -26,7 +28,7 @@ public class APmacVO {
 
     @Override
     public String toString() {
-        return "APmacVO{" +
+        return "{" +
                 "apmac=" + apmac +
                 ", times=" + times +
                 '}';

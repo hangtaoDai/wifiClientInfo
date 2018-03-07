@@ -1,0 +1,322 @@
+{
+  "nodes": [
+    {
+      "name": "lixiang2016",
+      "group": 1
+    },
+    {
+      "name": "sjh2016",
+      "ap_address": "老图书馆2F",
+      "start_time": "2016-10-27 15:46:26",
+      "last_time": "2016-10-27 16:32:02",
+      "group": 1
+    },
+    {
+      "name": "xjtu2016",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 14:16:04",
+      "last_time": "2016-10-27 15:46:26",
+      "group": 1
+    },
+    {
+      "name": "bmybbs",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:43:20",
+      "last_time": "2016-10-27 12:59:22",
+      "group": 1
+    },
+    {
+      "name": "bmybbs",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:59:22",
+      "last_time": "2016-10-27 13:12:07",
+      "group": 1
+    },
+    {
+      "name": "lcrlcr555",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 17:07:46",
+      "last_time": "2016-10-27 17:46:46",
+      "group": 1
+    },
+    {
+      "name": "xqxing",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:40:07",
+      "last_time": "2016-10-27 12:53:00",
+      "group": 1
+    },
+    {
+      "name": "ruifeng.liu",
+      "ap_address": "理科楼1F",
+      "start_time": "2016-10-27 09:00:52",
+      "last_time": "2016-10-27 09:26:29",
+      "group": 1
+    },
+    {
+      "name": "jpzhu",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:43:20",
+      "last_time": "2016-10-27 12:59:22",
+      "group": 1
+    },
+    {
+      "name": "xzdu",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:59:22",
+      "last_time": "2016-10-27 13:12:07",
+      "group": 1
+    },
+    {
+      "name": "shixuejiao",
+      "ap_address": "西二楼2F",
+      "start_time": "2016-10-27 08:48:07",
+      "last_time": "2016-10-27 09:07:18",
+      "group": 1
+    },
+    {
+      "name": "yxt2013",
+      "ap_address": "老图书馆2F",
+      "start_time": "2016-10-27 15:49:40",
+      "last_time": "2016-10-27 17:07:46",
+      "group": 1
+    },
+    {
+      "name": "leideng",
+      "ap_address": "老图书馆2F",
+      "start_time": "2016-10-27 09:36:07",
+      "last_time": "2016-10-27 10:53:30",
+      "group": 1
+    },
+    {
+      "name": "yang123",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 14:16:04",
+      "last_time": "2016-10-27 15:46:26",
+      "group": 1
+    },
+    {
+      "name": "weixiaoping",
+      "ap_address": "铸造楼",
+      "start_time": "2016-10-27 17:49:59",
+      "last_time": "2016-10-27 18:09:30",
+      "group": 1
+    },
+    {
+      "name": "c876900929s",
+      "ap_address": "老图书馆2F",
+      "start_time": "2016-10-27 17:43:30",
+      "last_time": "2016-10-27 18:15:58",
+      "group": 1
+    },
+    {
+      "name": "niulingzhi",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:40:07",
+      "last_time": "2016-10-27 12:59:22",
+      "group": 1
+    },
+    {
+      "name": "13038986988",
+      "ap_address": "西二楼2F",
+      "start_time": "2016-10-27 08:48:07",
+      "last_time": "2016-10-27 09:07:18",
+      "group": 1
+    },
+    {
+      "name": "baoweike",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 17:07:46",
+      "last_time": "2016-10-27 17:20:41",
+      "group": 1
+    },
+    {
+      "name": "yang123",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 14:16:04",
+      "last_time": "2016-10-27 14:35:27",
+      "group": 1
+    },
+    {
+      "name": "zhujunguo",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 14:16:04",
+      "last_time": "2016-10-27 15:46:26",
+      "group": 1
+    },
+    {
+      "name": "ggchen",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:43:20",
+      "last_time": "2016-10-27 12:56:11",
+      "group": 1
+    },
+    {
+      "name": "sjh2016",
+      "ap_address": "图书馆北门口",
+      "start_time": "2016-10-27 17:07:46",
+      "last_time": "2016-10-27 17:20:41",
+      "group": 1
+    },
+    {
+      "name": "lianghui",
+      "ap_address": "理科楼1F",
+      "start_time": "2016-10-27 09:00:52",
+      "last_time": "2016-10-27 09:26:29",
+      "group": 1
+    },
+    {
+      "name": "xuguangzhao",
+      "ap_address": "教二楼东",
+      "start_time": "2016-10-27 10:56:44",
+      "last_time": "2016-10-27 11:16:13",
+      "group": 1
+    },
+    {
+      "name": "wangx",
+      "ap_address": "彩虹门里",
+      "start_time": "2016-10-27 12:43:20",
+      "last_time": "2016-10-27 12:59:22",
+      "group": 1
+    },
+    {
+      "name": "jxjw",
+      "ap_address": "西二楼2F",
+      "start_time": "2016-10-27 08:48:07",
+      "last_time": "2016-10-27 09:07:18",
+      "group": 1
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 2,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 3,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 4,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 5,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 6,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 7,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 8,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 9,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 10,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 11,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 12,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 13,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 14,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 15,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 16,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 17,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 18,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 19,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 20,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 21,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 22,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 23,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 24,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 25,
+      "target": 0,
+      "value": 1.0
+    },
+    {
+      "source": 26,
+      "target": 0,
+      "value": 1.0
+    }
+  ]
+}

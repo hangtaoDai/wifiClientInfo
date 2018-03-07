@@ -177,7 +177,7 @@
                 </li>
                 <!-运动轨迹->
                 <li class="layui-nav-item">
-                    <a class="hp-tab-add" hp-href="/hp-layui/hpDemo/route.html" href="javascript:;" >运动轨迹</a>
+                    <a class="hp-tab-add" hp-href="/routes" href="javascript:;" >运动轨迹</a>
                 </li>
                 <!-AP热力图->
                 <li class="layui-nav-item">
@@ -189,7 +189,7 @@
                 </li>
                 <!-会面详情->
                 <li class="layui-nav-item">
-                    <a class="hp-tab-add" hp-href="/hp-layui/pageDemo/echarts/bar.html" href="javascript:;" >会面详情</a>
+                    <a class="hp-tab-add" hp-href="/meetings" href="javascript:;" >会面详情</a>
                 </li>
 
 

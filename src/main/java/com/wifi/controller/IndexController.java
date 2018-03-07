@@ -53,5 +53,11 @@ public class IndexController {
 
     }
 
+    @RequestMapping(value="/routes")
+    public String routes(){
+        return "routes";
+
+    }
+
 
 }

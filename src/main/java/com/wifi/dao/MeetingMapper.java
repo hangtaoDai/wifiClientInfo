@@ -2,6 +2,9 @@ package com.wifi.dao;
 
 import com.wifi.bean.Meeting;
 
+import java.util.HashMap;
+import java.util.List;
+
 public interface MeetingMapper {
     int deleteByPrimaryKey(Integer meetingId);
 
@@ -14,4 +17,7 @@ public interface MeetingMapper {
     int updateByPrimaryKeySelective(Meeting record);
 
     int updateByPrimaryKey(Meeting record);
+
+    //new add
+    List<HashMap> selectByUName(String date,String username);
 }

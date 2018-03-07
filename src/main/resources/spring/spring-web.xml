@@ -44,9 +44,17 @@
     <mvc:resources mapping="/hp-layui/hpModules/*" location="/hp-layui/hpModules/"/>
     <mvc:resources mapping="/hp-layui/img/*" location="/hp-layui/img/"/>
     <mvc:resources mapping="/hp-layui/lib/*" location="/hp-layui/lib/"/>
+    <mvc:resources mapping="/hp-layui/lib/layui/lay/*" location="/hp-layui/lib/layui/lay/"/>
     <mvc:resources mapping="/hp-layui/demo/*" location="/hp-layui/demo/"/>
     <mvc:resources mapping="/hp-layui/hpDemo/*" location="/hp-layui/hpDemo/"/>
     <mvc:resources mapping="/hp-layui/pageDemo/*" location="/hp-layui/pageDemo/"/>
 
-    <mvc:resources mapping="json/table/*" location="/data/json/table/"/>
+    <mvc:resources mapping="/json/table/*" location="/data/json/table/"/>
+    <mvc:resources mapping="/json/*" location="/data/json/" />
+
+    <mvc:resources mapping="/group-explorer/css/*" location="/group-explorer/css/"/>
+    <mvc:resources mapping="/group-explorer/images/*" location="/group-explorer/images/"/>
+    <mvc:resources mapping="/group-explorer/js/data/*" location="/group-explorer/js/data/"/>
+    <mvc:resources mapping="/group-explorer/js/plugins/*" location="/group-explorer/js/plugins/"/>
+
 </beans>

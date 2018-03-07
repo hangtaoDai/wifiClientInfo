@@ -10,222 +10,11 @@
     <link rel="stylesheet" href="/hp-layui/lib/layui/css/layui.css">
 
 
-    <style>
-        body{padding: 20px;}
-    </style>
 </head>
 <body>
 
-<div class="layui-btn-group demoTable">
-    <button id="refrsh-1" class="layui-btn" data-type="reload">刷新表格</button>
-</div>
-
-<table class="layui-table" lay-data="{width: 892, height:332, url:'json/table/demo3.json', page:true, id:'idTest',showLoad:true}" lay-filter="demo">
-    <thead>
-    <tr>
-        <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'username', width:80}">用户名</th>
-        <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-        <th lay-data="{field:'city', width:80}">城市</th>
-        <th lay-data="{field:'sign', width:160}">签名</th>
-        <th lay-data="{field:'experience', width:80, sort: true}">积分</th>
-
-        <th lay-data="{field:'classify', width:80}">职业</th>
-        <th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-        <th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>
-        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo1'}"></th>
-    </tr>
-    </thead>
-</table>
-
-<script type="text/html" id="barDemo1">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
 
 
-
-
-
-
-
-<div class="layui-btn-group">
-    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-    <button class="layui-btn" data-type="isAll">验证是否全选</button>
-    <button id="refrsh" class="layui-btn" data-type="reload">刷新表格</button>
-</div>
-
-<table class="layui-table" lay-data="{width:900, height:'full', url:'json/table/demo1.json', page:true, id:'test'}" lay-filter="test">
-    <thead>
-    <tr>
-        <th lay-data="{checkbox:true, fixed: true}"></th>
-        <th lay-data="{field:'id', width:80, fixed: true, sort: true}">ID</th>
-        <th lay-data="{field:'username', width:120, sort: true, edit: 'text', templet: '#usernameTpl'}">用户名</th>
-        <th lay-data="{field:'email', width:150}">邮箱</th>
-        <th lay-data="{field:'sex', width:80}">性别</th>
-        <th lay-data="{field:'city', width:100}">城市</th>
-        <th lay-data="{field:'sign', width:150}">签名</th>
-        <th lay-data="{field:'experience', width:80, sort: true, edit: 'text'}">积分</th>
-        <th lay-data="{field:'ip', width:120}">IP</th>
-        <th lay-data="{field:'logins', width:100}">登入次数</th>
-        <th lay-data="{field:'joinTime', width:120}">加入时间</th>
-        <th lay-data="{fixed: 'right', toolbar: '#barDemo', width:180, align:'center'}">操作</th>
-    </tr>
-    </thead>
-</table>
-
-<div class="layui-hide" id="barDemo">
-    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-</div>
-
-<table id="demo"></table>
-
-<table class="layui-table" lay-data="{height:350, url:'json/table/demo1.json', page: true}">
-    <thead>
-    <tr>
-        <th lay-data="{field:'id', width:80, fixed:true, unresize: true, sort: true}">ID</th>
-        <th lay-data="{checkbox:true}"></th>
-        <th lay-data="{field:'username', width:120, templet: '#usernameTpl'}">用户名</th>
-        <th lay-data="{field:'email', width:150}">邮箱</th>
-        <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-        <th lay-data="{field:'city', width:100}">城市</th>
-        <th lay-data="{field:'sign', width:150}">签名</th>
-        <th lay-data="{field:'experience', width:80, sort: true}">积分</th>
-        <th lay-data="{field:'ip', width:120}">IP</th>
-        <th lay-data="{field:'logins', width:100, sort: true}">登入次数</th>
-        <th lay-data="{field:'joinTime', width:120}">加入时间</th>
-        <th lay-data="{fixed: 'right', toolbar: '#barDemo', width:180}">操作</th>
-    </tr>
-    </thead>
-</table>
-
-<script type="text/html" id="usernameTpl">
-    <a href="" class="layui-table-link">{{d.username || ''}}</a>
-</script>
-<script type="text/html" id="LAY_table_tpl_email">
-    <span {{# if(!d.activate){ }}style="color:#999"{{# } }}>{{ d.email }}</span>
-</script>
-
-
-<table class="layui-table" lay-data="{width:800, height:235, url:'json/table/demo2.json', page: true, limit: 6}">
-    <thead>
-    <tr>
-        <th lay-data="{checkbox:true, fixed:'left'}" rowspan="2"></th>
-        <th lay-data="{field:'username', width:80}" rowspan="2">联系人</th>
-        <th lay-data="{field:'amount', width:120}" rowspan="2">金额</th>
-        <th lay-data="{align:'center'}" colspan="3">地址</th>
-        <th lay-data="{fixed: 'right', width: 185, align: 'center', toolbar: '#barDemo'}" rowspan="2">操作</th>
-    </tr>
-    <tr>
-        <th lay-data="{field:'province', width:130}">省</th>
-        <th lay-data="{field:'city', width:130}">市</th>
-        <th lay-data="{field:'zone', width:200}">区</th>
-    </tr>
-    </thead>
-</table>
-
-<table class="layui-table" lay-data="{height:315, url:'json/table/demo2.json', page: true, limit: 6}">
-    <thead>
-    <tr>
-        <th lay-data="{field:'username', width:80}" rowspan="3">联系人</th>
-        <th lay-data="{field:'amount', width:120}" rowspan="3">金额</th>
-        <th lay-data="{align:'center'}" colspan="5">地址1</th>
-        <th lay-data="{align:'center'}" colspan="2">地址2</th>
-        <th lay-data="{fixed: 'right', width: 180, align: 'center', toolbar: '#barDemo'}" rowspan="3">操作</th>
-    </tr>
-    <tr>
-        <th lay-data="{field:'province', width:80}" rowspan="2">省</th>
-        <th lay-data="{field:'city', width:80}" rowspan="2">市</th>
-        <th lay-data="{align:'center'}" colspan="2">详细</th>
-        <th lay-data="{field:'zone', width:80}" rowspan="2">区</th>
-        <th lay-data="{field:'province', width:80}" rowspan="2">省</th>
-        <th lay-data="{field:'city', width:80}" rowspan="2">市</th>
-    </tr>
-    <tr>
-        <th lay-data="{field:'address', width:120}">小区</th>
-        <th lay-data="{field:'house', width:120}">单元</th>
-    </tr>
-    </thead>
-</table>
-
-
-<div class="layui-btn-group">
-    <button class="layui-btn" data-type="parseTable">转化为数据表格</button>
-</div>
-
-<table class="layui-table" lay-skin="line" lay-filter="parse-table-demo">
-    <thead>
-    <tr>
-        <th lay-data="{checkbox:true}"></th>
-        <th lay-data="{field:'username', width:200}">昵称</th>
-        <th lay-data="{field:'joinTime', width:150}">加入时间</th>
-        <th lay-data="{field:'sign', width:300}">签名</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td></td>
-        <td>贤心1</td>
-        <td>2016-11-28</td>
-        <td>人生就像是一场修行a</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>贤心2</td>
-        <td>2016-11-29</td>
-        <td>人生就像是一场修行b</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>贤心3</td>
-        <td>2016-11-30</td>
-        <td>人生就像是一场修行c</td>
-    </tr>
-    </tbody>
-</table>
-
-<table class="layui-table" lay-filter="parse-table-demo">
-    <thead>
-    <tr>
-        <td rowspan="2" lay-data="{field:'louceng', width:200}">楼层</td>
-        <td colspan="2">1单元</td>
-        <td colspan="2">2单元</td>
-    </tr>
-    <tr>
-        <td lay-data="{field:'men1', width:80}">1门</td>
-        <td lay-data="{field:'men2', width:80}">2门</td>
-        <td lay-data="{field:'men3', width:80}">1门</td>
-        <td lay-data="{field:'men4', width:80}">2门</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>3楼</td>
-        <td>301</td>
-        <td>302</td>
-        <td>301</td>
-        <td>302</td>
-    </tr>
-    <tr>
-        <td>2楼</td>
-        <td>201</td>
-        <td>202</td>
-        <td>201</td>
-        <td>202</td>
-    </tr>
-    <tr>
-        <td>1楼</td>
-        <td>101</td>
-        <td>102</td>
-        <td>101</td>
-        <td>102</td>
-    </tr>
-    </tbody>
-</table>
 
 <script src="/hp-layui/lib/layui/layui.js"></script>
 <script>
@@ -483,22 +272,19 @@
         //方法级渲染
         table.render({
             elem: '#LAY_table_user'
-            ,url: 'json/table/demo3.json'
+            ,url: '/macs'
             ,cols: [[
-                {checkbox: true, fixed: true}
-                ,{field:'id', title: 'ID', width:80, sort: true, fixed: true}
-                ,{field:'username', title: '用户名', width:80}
-                ,{field:'sex', title: '性别', width:80, sort: true}
-                ,{field:'city', title: '城市', width:80}
-                ,{field:'sign', title: '签名'}
-                ,{field:'experience', title: '积分', sort: true, width:80}
-                ,{field:'score', title: '评分', sort: true, width:80}
-                ,{field:'classify', title: '职业', width:80}
-                ,{field:'wealth', title: '财富', sort: true, width:135}
-            ]]
+               {checkbox: true, fixed: true}
+                ,{field:'id', title: 'No.', width:80, sort: true,fixed: true}
+                ,{field:'usermacId', title: '用户MAC编号', width:220, sort: true}
+                ,{field:'userId', title: '用户id', width:120}
+                ,{field:'username', title: '用户名', width:180, sort: true}
+                ,{field:'userMac', title: 'MAC地址', width:180, sort: true}
+
+             ]]
             ,id: 'testReload'
             ,page: true
-            ,height: 315
+            ,height: 415
         });
 
         var $ = layui.$, active = {
@@ -511,9 +297,7 @@
                         curr: 1 //重新从第 1 页开始
                     }
                     ,where: {
-                        key: {
-                            id: demoReload.val()
-                        }
+                        username:demoReload.val()
                     }
                 });
             }

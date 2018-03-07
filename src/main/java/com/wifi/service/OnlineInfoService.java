@@ -6,4 +6,8 @@ package com.wifi.service;
 public interface OnlineInfoService {
 
     String getHotAP(String date);
+
+    String getTrackByUName(String date ,String username);
+
+    String getTrackByUMac(String date, String usermac);
 }

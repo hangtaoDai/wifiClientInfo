@@ -123,4 +123,18 @@
 
   </select>
 
+  <select id="getTrackByusername" resultType="java.util.HashMap">
+    select onlineInfo_id,o.user_id,o.ap_id,usermac_id,date,start_time,end_time,username,ap_mac,ap_address,ap_longitude,ap_latitude,ap_indoor from onlineInfo o inner join `user` u,apMac ap
+    where o.user_id=u.user_id and o.ap_id=ap.ap_id and
+    date = #{0,jdbcType=VARCHAR} and username = #{1,jdbcType=VARCHAR}
+    ORDER BY start_time;
+
+  </select>
+  <select id="getTrackByusermac" resultType="java.util.HashMap">
+    select onlineInfo_id,o.user_id,o.ap_id,o.usermac_id,date,start_time,end_time,user_mac,mac_type,ap_mac,ap_address,ap_longitude,ap_latitude,ap_indoor from onlineInfo o inner join userMac u,apMac ap
+    where o.usermac_id=u.usermac_id and o.ap_id=ap.ap_id and
+    date = #{0,jdbcType=VARCHAR} and user_mac = #{1,jdbcType=VARCHAR}
+    ORDER BY start_time;
+
+  </select>
 </mapper>

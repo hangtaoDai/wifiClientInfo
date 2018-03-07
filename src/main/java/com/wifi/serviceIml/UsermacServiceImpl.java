@@ -1,12 +1,16 @@
 package com.wifi.serviceIml;
 
+import com.google.gson.Gson;
 import com.wifi.bean.Usermac;
+import com.wifi.bean.VO.UserMacVO;
+import com.wifi.bean.VO.UserMacWithName;
 import com.wifi.dao.UserMapper;
 import com.wifi.dao.UsermacMapper;
 import com.wifi.service.UsermacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +24,32 @@ public class UsermacServiceImpl implements UsermacService {
     @Autowired
     UserMapper userMapper;
 
-    public List<Usermac> selectUsermacByUsername(String username) {
+    public String selectUsermacByUsername(String username) {
         Integer userId = userMapper.selectIdByUserName(username);
         List<Usermac> usermacs = usermacMapper.selectByuserId(userId);
-        return usermacs;
+        ArrayList<UserMacWithName> userMacWithNames = new ArrayList<UserMacWithName>();
+        UserMacVO userMacVO = new UserMacVO();
+        int i = 1;
+        for (Usermac um: usermacs){
+            UserMacWithName userMacWithName = new UserMacWithName();
+            userMacWithName.setId(i);
+            userMacWithName.setUsername(username);
+            userMacWithName.setUsermacId(um.getUsermacId());
+            userMacWithName.setUserId(um.getUserId());
+            userMacWithName.setUserMac(um.getUserMac());
+            userMacWithName.setUserMac(um.getUserMac());
+            userMacWithNames.add(userMacWithName);
+            i++;
+        }
+
+        userMacVO.setCount(userMacWithNames.size());
+        userMacVO.setData(userMacWithNames);
+
+
+
+        String str = new Gson().toJson(userMacVO);
+
+        System.out.println(str);
+        return str;
     }
 }
