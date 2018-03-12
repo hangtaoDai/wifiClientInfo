@@ -24,40 +24,50 @@ public class MeetingServiceImpl implements MeetingService {
 
     public String getMeetingsByUName(String date, String username) {
         List<HashMap> meetings = meetingMapper.selectByUName(date, username);
-        System.out.println(meetings.get(0).get("meeting_id"));
         MeetingGraph meetingGraph = new MeetingGraph();
 
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        Node user = new Node();
-        user.setName(username);
-        user.setGroup(1);
-        nodes.add(user);
+        if (meetings.size() != 0) {
+            System.out.println(meetings.get(0).get("meeting_id"));
 
-        ArrayList<Link> links = new ArrayList<Link>();
-        int i = 1;
-        for (HashMap m : meetings){
-            Node partner = new Node();
-            partner.setName((String) m.get("pname"));
-            partner.setAp_address((String) m.get("ap_address"));
-            partner.setStart_time((String) m.get("start_time"));
-            partner.setLast_time((String) m.get("last_time"));
-            partner.setGroup(1);
-            nodes.add(partner);
 
-            Link link = new Link();
-            link.setSource(i);
-            link.setTarget(0);
-            link.setValue(1.0);
-            i++;
-            links.add(link);
+            ArrayList<Node> nodes = new ArrayList<Node>();
+            Node user = new Node();
+            user.setName(username);
+            user.setGroup(1);
+            nodes.add(user);
+
+            ArrayList<Link> links = new ArrayList<Link>();
+            int i = 1;
+            for (HashMap m : meetings) {
+                Node partner = new Node();
+                partner.setName((String) m.get("pname"));
+                partner.setAp_address((String) m.get("ap_address"));
+                partner.setStart_time((String) m.get("start_time"));
+                partner.setLast_time((String) m.get("last_time"));
+                partner.setGroup(1);
+                nodes.add(partner);
+
+                Link link = new Link();
+                link.setSource(i);
+                link.setTarget(0);
+                link.setValue(1.0);
+                i++;
+                links.add(link);
+
+            }
+
+            meetingGraph.setNodes(nodes);
+            meetingGraph.setLinks(links);
+            meetingGraph.setCode(true);
+
+
+
 
         }
-
-        meetingGraph.setNodes(nodes);
-        meetingGraph.setLinks(links);
-
+        System.out.println(meetingGraph.isCode());
         String str = new Gson().toJson(meetingGraph);
-        System.out.println(str);
+        System.out.println("service:"+str);
         return str;
     }
+
 }

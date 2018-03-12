@@ -8,6 +8,19 @@ import java.util.List;
 public class MeetingGraph {
     private List<Node> nodes;
     private List<Link> links;
+    private boolean code;
+
+    public MeetingGraph() {
+        this.code = false;
+    }
+
+    public void setCode(boolean code) {
+        this.code = code;
+    }
+
+    public boolean isCode() {
+        return code;
+    }
 
     public List<Node> getNodes() {
         return nodes;
@@ -30,6 +43,7 @@ public class MeetingGraph {
         return "{" +
                 "nodes=" + nodes +
                 ", links=" + links +
+                ", code=" + code +
                 '}';
     }
 }

@@ -6,7 +6,17 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <title>异步加载地图</title>
     <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="http://localhost:8080/hp-layui/lib/layui/css/layui.css" media="all">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
 </head>
+<style>
+    .getdata{
+        position: absolute;
+        top:2px;
+        left: 2px;
+    }
+</style>
 <body>
 <div id="container"></div>
 
@@ -15,15 +25,44 @@
 <div class="button-group">
     <input id="setCenter" type="button" class="button" value="改变地图中心点及缩放级别"/>
 </div>
+<script src="http://localhost:8080/hp-layui/lib/layui/layui.js"></script>
+
+
+<script src="http://localhost:8080/hp-layui/lib/jquery/jquery-2.1.4.js"></script>
+<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.4&key=a3548294e42429a8dbc4910169cbc047'></script>
+<!-- UI组件库 1.0 -->
+<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+<script src="http://localhost:8080/json/big-routes.js"></script>
+
+
+
+<form class="layui-form  layui-form-pane getdata" action="/hotmap">
+<div class="layui-form-item ">
+    <div class="layui-inline">
+        <label class="layui-form-label">日期选择</label>
+        <div class="layui-inline">
+
+            <input type="text" name="date" id="date1" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-inline">
+
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+        </div>
+
+    </div>
+</div>
+</form>
 <script>
-    var map = new AMap.Map('container', {
-        resizeEnable: true,
-        center: [116.397428, 39.90923],
-        zoom: 16,
-        zooms:[16,18]
-    });
-    AMap.event.addDomListener(document.getElementById('setCenter'), 'click', function() {
-        // 设置缩放级别和中心点
+
+
+
+    function filldata (hotAP) {
+        var map = new AMap.Map('container', {
+            resizeEnable: true,
+            center: [108.9848256111, 34.2462376564],
+            zoom: 16,
+            zooms:[16,18]
+        });
         map.setZoomAndCenter(16, [108.9848256111,  34.2462376564]);
 
         // 在新中心点添加 marker
@@ -31,30 +70,138 @@
             map: map,
             position: [108.9848256111, 34.2462376564]
         });
+
+        AMap.event.addDomListener(document.getElementById('setCenter'), 'click', function() {
+            // 设置缩放级别和中心点
+            map.setZoomAndCenter(16, [108.9848256111,  34.2462376564]);
+
+            // 在新中心点添加 marker
+            var marker = new AMap.Marker({
+                map: map,
+                position: [108.9848256111, 34.2462376564]
+            });
+        });
+
+
+        var markers = []; //province见Demo引用的JS文件
+        var count=0;
+        for (var i = 0; i < hotAP.length; i += 1) {
+            count++;
+            var marker;
+            var icon;
+            if (count<100){
+                icon = new AMap.Icon({
+                    image: '/static/images/AP-red.png',
+                    size: new AMap.Size(24, 24)
+                });
+            }else {
+                icon = new AMap.Icon({
+                    image: '/static/images/AP.png',
+                    size: new AMap.Size(24, 24)
+                });
+            }
+            var pos= hotAP[i].apmac.apLongitude+","+hotAP[i].apmac.apLatitude;
+            // alert(pos);
+            marker = new AMap.Marker({
+                icon: icon,
+                position: pos.split(","),
+                offset: new AMap.Pixel(-12,-12),
+                zIndex: 101,
+                title: "位置:"+hotAP[i].apmac.apAddress+",连接次数:"+hotAP[i].times,
+                map: map
+            });
+
+            markers.push(marker);
+        }
+        map.setFitView();
+    }
+
+
+
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+                ,layer = layui.layer
+                ,layedit = layui.layedit
+                ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+
+            var datas=data.field;
+            var action=data.form.action;
+
+            $.ajax({
+                url:action,
+                data:datas,
+                type:"POST",
+                dataType:"text",
+                success:function(msg){
+
+                    layer.msg(msg);
+                    var obj=JSON.parse(msg);
+                    filldata(obj);
+
+                },
+                error:function(error){
+                    //  alert("no data");
+                    layer.msg("没有查询到相关的轨迹数据");
+                }
+            });
+
+            return false;
+        });
+
+
+
+
+
+
     });
 
-    var markers = []; //province见Demo引用的JS文件
-    for (var i = 0; i < hotAP.length; i += 1) {
-        var marker;
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
 
-        var icon = new AMap.Icon({
-            image: '/static/images/AP.png',
-            size: new AMap.Size(24, 24)
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#mov' //指定元素
         });
-        var pos= hotAP[i].apmac.apLongitude+","+hotAP[i].apmac.apLatitude;
-        // alert(pos);
-        marker = new AMap.Marker({
-            icon: icon,
-            position: pos.split(","),
-            offset: new AMap.Pixel(-12,-12),
-            zIndex: 101,
-            title: hotAP[i].times,
-            map: map
-        });
+    });
+</script>
+<script>
 
-        markers.push(marker);
-    }
-    map.setFitView();
+
 </script>
 </body>
 </body>

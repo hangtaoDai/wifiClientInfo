@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wifi.dao.FriendMapper" >
+  <resultMap id="BaseResultMap" type="com.wifi.bean.Friend" >
+    <id column="friend_id" property="friendId" jdbcType="INTEGER" />
+    <result column="usermac_id" property="usermacId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wifi.bean.Friend" extends="BaseResultMap" >
+    <result column="friends" property="friends" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    friend_id, usermac_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    friends
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from friend
+    where friend_id = #{friendId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from friend
+    where friend_id = #{friendId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wifi.bean.Friend" >
+    insert into friend (friend_id, usermac_id, friends
+      )
+    values (#{friendId,jdbcType=INTEGER}, #{usermacId,jdbcType=INTEGER}, #{friends,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wifi.bean.Friend" >
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="friendId != null" >
+        friend_id,
+      </if>
+      <if test="usermacId != null" >
+        usermac_id,
+      </if>
+      <if test="friends != null" >
+        friends,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="friendId != null" >
+        #{friendId,jdbcType=INTEGER},
+      </if>
+      <if test="usermacId != null" >
+        #{usermacId,jdbcType=INTEGER},
+      </if>
+      <if test="friends != null" >
+        #{friends,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wifi.bean.Friend" >
+    update friend
+    <set >
+      <if test="usermacId != null" >
+        usermac_id = #{usermacId,jdbcType=INTEGER},
+      </if>
+      <if test="friends != null" >
+        friends = #{friends,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where friend_id = #{friendId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wifi.bean.Friend" >
+    update friend
+    set usermac_id = #{usermacId,jdbcType=INTEGER},
+      friends = #{friends,jdbcType=LONGVARCHAR}
+    where friend_id = #{friendId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wifi.bean.Friend" >
+    update friend
+    set usermac_id = #{usermacId,jdbcType=INTEGER}
+    where friend_id = #{friendId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -15,10 +15,10 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">
-            hp-layui 与你同在
+            交通大学社区发现系统
         </div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
+        <ul  style="display: none" class="layui-nav layui-layout-left">
             <li class="layui-nav-item">
                 <a href="">阿里云</a>
             </li>
@@ -70,7 +70,7 @@
             <ul class="layui-nav hp-nav-none">
                 <li class="layui-nav-item">
                     <a href="javascript:;"  class="hp-user-name">
-                        <img src="/hp-layui/img/1.jpg" class="layui-circle-img"><span class="hp-kd">隐无为</span>
+                        <img src="/hp-layui/img/1.jpg" class="layui-circle-img"><span class="hp-kd">黄丽媛</span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
@@ -194,12 +194,6 @@
 
 
 
-                <li class="layui-nav-item">
-                    <a  target="_blank"   href="https://github.com/hpit-BAT">github组织</a>
-                </li>
-                <li class="layui-nav-item">
-                    <a  target="_blank"   href="https://hpit-bat.github.io/hpit-BAT-home">黑科技</a>
-                </li>
             </ul>
         </div>
     </div>

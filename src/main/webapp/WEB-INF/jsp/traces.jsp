@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 重点参数：renderOptions -->
 <!doctype html>
 <html lang="zh-CN">
@@ -7,7 +6,7 @@
 <head>
     <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/index.html -->
     <%--<base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />--%>
-    <%--<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>--%>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
     <link rel="stylesheet" href="http://localhost:8080/hp-layui/lib/layui/css/layui.css" media="all">
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
@@ -31,55 +30,14 @@
             color: #fff;
             font-size: 14px;
         }
-        .getdata{
-            position: absolute;
-            top:0px;
-            right: 30px;
-        }
     </style>
 </head>
 
 <body>
 
-<form class="layui-form  layui-form-pane" action="/traces">
+<script src="http://localhost:8080/hp-layui/lib/layui/layui.js"></script>
 
-<div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">日期选择</label>
-            <div class="layui-input-block">
-                <input type="text" name="date" id="date1" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-
-
-        <div class="layui-inline">
-            <select id="usertype" name="type">
-                <option value="">请选择查询类型</option>
-                <option value="mac" >Mac地址</option>
-                <option value="username">用户名</option>
-            </select>
-        </div>
-        <div class="layui-inline">
-            <div class="layui-input-inline">
-                <input type="text" id="querystr" name="querystr" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-    <div class="layui-inline">
-        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-
-    </div>
-
-
-
-</div>
-</form>
-<button class="layui-btn demo getdata" data-type="test6">查询轨迹</button>
-
-
-
-
+<div id="container"></div>
 
 <script src="http://webapi.amap.com/maps?v=1.4.4&key=a3548294e42429a8dbc4910169cbc047&callback=init"></script>
 <script src="/static/js/hotAP.js"></script>
@@ -91,10 +49,184 @@
 <!-- UI组件库 1.0 -->
 <script src="http://localhost:8080/hp-layui/lib/layui/layui.js"></script>
 
-
-
 <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 <script src="http://localhost:8080/json/big-routes.js"></script>
+<div class="button-group">
+    <input id="setCenter" type="button" class="button" value="改变地图中心点及缩放级别"/>
+</div>
+<input type='hidden' id='map_data' value='${data}'/>
+
+
+<script>
+    layui.use('layer', function(){
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+            test: function(){
+                layer.alert('你好么，体验者');
+            }
+            ,test5: function(){
+                layer.open({
+                    title:'更新论坛信息',
+                    type: 1,
+                    skin: 'layui-layer-rim',
+                    area: ['500px', '580px'],
+                    content: $('#test11111')
+                });
+            }
+            ,test6: function(){
+                layer.open({
+                    type: 2
+                    ,content: '/traces'
+                    ,area: ['875px', '300px']
+                    ,maxmin: true
+                });
+            }
+            ,test7: function(){
+                layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
+                    layer.close(index);
+                    layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+                        layer.close(index);
+                        layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
+                    });
+                });
+            }
+
+        };
+        $('.demo').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [108.9848256111, 34.2462376564],
+        zoom: 16,
+        zooms:[16,18]
+
+
+    });
+
+    AMap.event.addDomListener(document.getElementById('setCenter'), 'click', function() {
+        // 设置缩放级别和中心点
+        map.setZoomAndCenter(16, [108.9848256111,  34.2462376564]);
+
+        // 在新中心点添加 marker
+        var marker = new AMap.Marker({
+            map: map,
+            position: [108.9848256111, 34.2462376564]
+        });
+    });
+
+    function loadTrace(movings) {
+
+        AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+            if (!PathSimplifier.supportCanvas) {
+                alert('当前环境不支持 Canvas！');
+                return;
+            }
+            var pathSimplifierIns=null;
+            pathSimplifierIns = new PathSimplifier({
+                zIndex: 100,
+                autoSetFitView: false,
+                map: map, //所属的地图实例
+
+                getPath: function(pathData, pathIndex) {
+
+                    return pathData.path;
+                },
+                getHoverTitle: function(pathData, pathIndex, pointIndex) {
+
+                    if (pointIndex >= 0) {
+                        //point
+                        return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
+                    }
+
+                    return pathData.name + '，点数量' + pathData.path.length;
+                },
+                renderOptions: {
+
+                    renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
+                }
+            });
+
+            //  window.pathSimplifierIns = pathSimplifierIns;
+            endIdx = 0,
+                    data = [{
+                        name: movings[0].name,
+                        path: movings[0].path.slice(0, 1)
+                    }];
+            // data=movings;
+            pathSimplifierIns.setData(data);
+            //对第一条线路（即索引 0）创建一个巡航器
+            pathSimplifierIns.clearPathNavigators();
+            var navg1 = pathSimplifierIns.createPathNavigator(0, {
+                loop: true, //循环播放
+                speed: 5 //巡航速度，单位千米/小时
+            });
+
+            function expandPath() {
+
+                function doExpand() {
+
+                    endIdx++;
+
+                    if (endIdx >= myPath.length) {
+                        return false;
+                    }
+
+                    var cursor = navg1.getCursor().clone(), //保存巡航器的位置
+                            status = navg1.getNaviStatus();
+
+
+                    data[0].path = myPath.slice(0, endIdx + 1);
+                    pathSimplifierIns.setData(data); //延展路径
+
+
+                    //重新建立一个巡航器
+                    navg1 = pathSimplifierIns.createPathNavigator(0, {
+                        loop: true, //循环播放
+                        speed: 200 //巡航速度，单位千米/小时
+                    });
+
+                    if (status !== 'stop') {
+                        navg1.start();
+                    }
+
+                    //恢复巡航器的位置
+                    if (cursor.idx >= 0) {
+                        navg1.moveToPoint(cursor.idx, cursor.tail);
+                    }
+
+                    return true;
+                }
+
+                if (doExpand()) {
+
+                    setTimeout(expandPath, 1500);
+                }
+            }
+
+
+            navg1.start();
+
+            expandPath();
+        });
+    }
+
+    var data= $("#map_data");
+
+    var movings=JSON.parse(data.val());
+    loadTrace(movings);
+</script>
+
 
 
 
@@ -105,7 +237,7 @@
         var basePath = localObj.protocol + "//" + localObj.host + "/";
         return basePath ;
     };
-
+    var movings;
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
                 ,layer = layui.layer
@@ -150,27 +282,30 @@
             var datas=data.field;
             var action=data.form.action;
 
-//            $.ajax({
-//                url:action,
-//                data:datas,
-//                type:"POST",
-//                dataType:"text",
-//                success:function(msg){
-//
-//                    movings=msg;
-//                    var obj = JSON.parse(msg);
-//                   // alert(obj[0].path);
-//
-//                    loadTrace(obj);
-//
-//                },
-//                error:function(error){
-//                  //  alert("no data");
-//                    layer.msg("没有查询到相关的轨迹数据");
-//                }
-//            });
+            $.ajax({
+                url:action,
+                data:datas,
+                type:"POST",
+                dataType:"text",
+                success:function(msg){
 
-            return true;
+                    movings=msg;
+                    var obj = JSON.parse(msg);
+                    // alert(obj[0].path);
+
+                    loadTrace(obj);
+
+                },
+                error:function(error){
+                    //  alert("no data");
+                    layer.msg("没有查询到相关的轨迹数据");
+                    var msg='[{"name":"????? -\u003e ???B3F","path":[[]]}]';
+                    var obj = JSON.parse(msg);
+                    loadTrace(obj);
+                }
+            });
+
+            return false;
         });
 
 
@@ -190,62 +325,6 @@
     });
 </script>
 
-
-<script>
-    layui.use('layer', function(){
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-
-        //触发事件
-        var active = {
-           test6: function(){
-                var option=$("#usertype option:selected");
-
-                if(option.val()=="" || $("#date1").val()=="" || $("#querystr").val()=="")
-                {
-                    layer.msg('查询条件不完整,无法查询,请填充完整');
-                }else {
-                    $.ajax({
-                        url:'/movings?date=' + $("#date1").val() + '&type=' + option.val() + '&querystr=' + $("#querystr").val(),
-//                        data:datas,
-                        type:"POST",
-                        dataType:"text",
-                        success:function(msg){
-
-                            if (msg=='false'){
-
-                                layer.msg('该查询条件下,无返回的运动轨迹数据');
-                            }else{
-
-                                layer.open({
-                                    type: 2
-                                    ,
-                                    content: '/traces?date=' + $("#date1").val() + '&type=' + option.val() + '&querystr=' + $("#querystr").val()
-                                    ,
-                                    area: ['875px', '500px']
-                                    ,
-                                    maxmin: true
-                                });
-                            }
-
-
-                        },
-                        error:function(error){
-                          //  alert("no data");
-                            layer.msg("没有查询到相关的轨迹数据");
-                        }
-                    });
-
-
-                }
-            }
-
-        };
-        $('.demo').on('click', function(){
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
-    });
-    </script>
 
 
 

@@ -15,7 +15,7 @@
 
 
 
-
+<script src="http://localhost:8080/hp-layui/lib/jquery/jquery-2.1.4.js"></script>
 <script src="/hp-layui/lib/layui/layui.js"></script>
 <script>
     layui.use('table', function(){
@@ -275,16 +275,17 @@
             ,url: '/macs'
             ,cols: [[
                {checkbox: true, fixed: true}
-                ,{field:'id', title: 'No.', width:80, sort: true,fixed: true}
-                ,{field:'usermacId', title: '用户MAC编号', width:220, sort: true}
+                ,{field:'id', title: 'No.', width:80, sort: true,fixed: true, templet: '<div><a href="javascript:void(0)" class="layui-table-link">{{d.id}}</a></div>'}
+                ,{field:'usermacId', title: '用户MAC编号', width:220, sort: true,templet: '<div><span class="layui-badge">{{d.usermacId}}</span></div> '}
                 ,{field:'userId', title: '用户id', width:120}
                 ,{field:'username', title: '用户名', width:180, sort: true}
-                ,{field:'userMac', title: 'MAC地址', width:180, sort: true}
+                ,{field:'userMac', title: 'MAC地址', width:180, sort: true,templet: '<div><span class="layui-badge layui-bg-blue">{{d.userMac}}</span></div> '}
 
              ]]
             ,id: 'testReload'
             ,page: true
             ,height: 415
+            ,width: 835
         });
 
         var $ = layui.$, active = {
@@ -307,6 +308,13 @@
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
+    });
+
+    $(document).keypress(function(e) {
+        // 回车键事件
+        if(e.which == 13) {
+            jQuery(".demoTable .layui-btn").click();
+        }
     });
 </script>
 

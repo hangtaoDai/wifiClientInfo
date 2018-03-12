@@ -6,9 +6,10 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="user_mac" property="userMac" jdbcType="VARCHAR" />
     <result column="mac_type" property="macType" jdbcType="VARCHAR" />
+    <result column="groups" property="groups" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    usermac_id, user_id, user_mac, mac_type
+    usermac_id, user_id, user_mac, mac_type,groups
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -41,6 +42,9 @@
       <if test="macType != null" >
         mac_type,
       </if>
+      <if test="groups != null" >
+        mac_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="usermacId != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="macType != null" >
         #{macType,jdbcType=VARCHAR},
+      </if>
+      <if test="groups != null" >
+        #{groups,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

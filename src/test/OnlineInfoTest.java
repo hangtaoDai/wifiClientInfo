@@ -1,3 +1,4 @@
+import com.wifi.bean.VO.Track;
 import com.wifi.service.OnlineInfoService;
 import com.wifi.service.UsermacService;
 import org.junit.Test;
@@ -6,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.util.ArrayList;
 
 
 /**
@@ -33,7 +36,7 @@ public class OnlineInfoTest {
 
     @Test
     public void test2(){
-        String str = usermacService.selectUsermacByUsername("xjtu");
+        String str = usermacService.selectUsermacByUsername("xjtuxxx");
 
         System.out.println(str);
     }
@@ -42,15 +45,15 @@ public class OnlineInfoTest {
     public void testOnlineTrackByUName(){
         String date = "2016-10-27";
         String uname = "xxzxtemp5";
-        String str = onlineInfoService.getTrackByUName(date,uname);
+        ArrayList<Track> str = onlineInfoService.getTrackByUName(date,uname);
         System.out.println(str);
     }
 
     @Test
     public void testOnlineTrackByUMac(){
         String date = "2016-10-27";
-        String umac = "8cebc69fb6d4";
-        String str = onlineInfoService.getTrackByUMac(date,umac);
+        String umac = "8cebc69fb6d";
+        ArrayList<Track> str = onlineInfoService.getTrackByUMac(date,umac);
         System.out.println(str);
 
     }

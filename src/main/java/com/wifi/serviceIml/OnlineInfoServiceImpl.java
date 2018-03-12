@@ -70,15 +70,20 @@ public class OnlineInfoServiceImpl implements OnlineInfoService {
         return str;
     }
 
-    public String getTrackByUName(String date, String username) {
+    public ArrayList<Track> getTrackByUName(String date, String username) {
         List<HashMap> onlineTrackByUNameList = onlineinfoMapper.getTrackByusername(date, username);
         ArrayList<Track> tracks = new ArrayList<Track>();
         Track track = new Track();
-        String start_point = (String) onlineTrackByUNameList.get(0).get("ap_address");
-        System.out.println(start_point);
         int num = onlineTrackByUNameList.size();
-        String end_point = (String) onlineTrackByUNameList.get(num-1).get("ap_address");
-        System.out.println(end_point);
+        String start_point = "";
+        String end_point = "";
+
+        if (num>0) {
+            start_point = (String) onlineTrackByUNameList.get(0).get("ap_address");
+            System.out.println(start_point);
+            end_point = (String) onlineTrackByUNameList.get(num - 1).get("ap_address");
+            System.out.println(end_point);
+        }
         track.setName(start_point+" -> "+end_point);
         Double[][] path = new Double[num][2];
         for (int i = 0; i < num; i++) {
@@ -89,20 +94,29 @@ public class OnlineInfoServiceImpl implements OnlineInfoService {
             path[i][0] = lngLatNew.getLongitude();
             path[i][1] = lngLatNew.getLantitude();
         }
-        track.setPath(path);
-        tracks.add(track);
-        String str = new Gson().toJson(tracks);
-        return str;
+        if (num!=0) {
+            track.setPath(path);
+            tracks.add(track);
+        }
+
+        return tracks;
     }
 
-    public String getTrackByUMac(String date, String usermac) {
+    public ArrayList<Track> getTrackByUMac(String date, String usermac) {
         List<HashMap> onlineTrackByUMacList = onlineinfoMapper.getTrackByusermac(date, usermac);
         ArrayList<Track> tracks = new ArrayList<Track>();
         Track track = new Track();
-        String start_point = (String) onlineTrackByUMacList.get(0).get("ap_address");
-        System.out.println(start_point);
+        String start_point = "";
+        String end_point = "";
         int num = onlineTrackByUMacList.size();
-        String end_point = (String) onlineTrackByUMacList.get(num-1).get("ap_address");
+        if (num>0) {
+            start_point = (String) onlineTrackByUMacList.get(0).get("ap_address");
+            end_point = (String) onlineTrackByUMacList.get(num-1).get("ap_address");
+        }
+        System.out.println(start_point);
+
+
+
         System.out.println(end_point);
         track.setName(start_point+" -> "+end_point);
         Double[][] path = new Double[num][2];
@@ -114,9 +128,11 @@ public class OnlineInfoServiceImpl implements OnlineInfoService {
             path[i][0] = lngLatNew.getLongitude();
             path[i][1] = lngLatNew.getLantitude();
         }
-        track.setPath(path);
-        tracks.add(track);
-        String str = new Gson().toJson(tracks);
-        return str;
+        if (num!=0) {
+            track.setPath(path);
+            tracks.add(track);
+        }
+
+        return tracks;
     }
 }

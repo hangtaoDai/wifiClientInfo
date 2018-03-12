@@ -5,5 +5,5 @@ package com.wifi.service;
  */
 public interface MeetingService {
 
-    public String getMeetingsByUName(String date,String username);
+    public String getMeetingsByUName(String date, String username);
 }
